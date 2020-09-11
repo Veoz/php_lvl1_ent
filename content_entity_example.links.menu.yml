@@ -1,0 +1,23 @@
+entity.content_entity_example_contact.collection:
+  title: 'Content Entity Example: Contacts Listing'
+  route_name: entity.content_entity_example_contact.collection
+  description: 'List Contacts'
+  weight: 10
+content_entity_example_contact.admin.structure.settings:
+  title: Contact Settings
+  description: 'Configure Contact entity'
+  route_name:  content_entity_example.contact_settings
+  parent: system.admin_structure
+#Спосіб додати пункт меню в адмін панель! Корисна штука...
+hello_world.admin_toolbar_hello_world:
+  title: 'Ent say!'
+  parent: system.admin
+  route_name: entity.content_entity_example_contact.collection
+  weight: 0
+#Вкладене меню для пунктуц вище
+hello_world.admin_toolbar_collect_phone_settings:
+  title: 'Select Ent say'
+  description: 'In this settings you can set default ...'
+  parent: hello_world.admin_toolbar_hello_world #Ім'я меню до якого буде задіяна вклвденнісь (в даному контексті).
+  route_name: entity.content_entity_example_contact.collection #Ім'я маршруту.
+  weight: 1
