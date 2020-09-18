@@ -5,5 +5,4 @@ content_entity_example.contact_add:
 
   # Where will the link appear, defined by route name.
   appears_on:
-    - entity.content_entity_example_contact.collection
     - entity.content_entity_example_contact.canonical

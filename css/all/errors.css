@@ -1,0 +1,25 @@
+div.errors{
+  display: flex;
+  justify-content: center;
+}
+div.form-system-messages {
+  width: 100%;
+
+}
+div.form-system-messages ul{
+  padding: 0;
+}
+div.form-system-messages li{
+  margin: 5px;
+
+
+
+}
+div.form-system-messages div div div {
+  padding: 10px;
+  margin: 20px;
+  color:#8a0a0a;
+  text-transform: uppercase;
+  text-align: center;
+  border-radius: 10px;
+}

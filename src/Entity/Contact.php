@@ -95,7 +95,8 @@ use Drupal\user\UserInterface;
  *     "canonical" = "/content_entity_example_contact/{content_entity_example_contact}",
  *     "edit-form" = "/content_entity_example_contact/{content_entity_example_contact}/edit",
  *     "delete-form" = "/contact/{content_entity_example_contact}/delete",
- *     "collection" = "/content_entity_example_contact/list"
+ *     "manage" = "/content_entity_example_contact/{content_entity_example_contact}/edit",
+ *     "ent" = "/ent_contact",
  *   },
  *   field_ui_base_route = "content_entity_example.contact_settings",
  * )
@@ -226,9 +227,9 @@ class Contact extends ContentEntityBase implements ContactInterface {
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['first_name'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('First Name'))
-      ->setDescription(t('The first name of the Contact entity.'))
+    $fields['email'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Email'))
+      ->setDescription(t('Email address of user.'))
       ->setSettings(array(
         'default_value' => '',
         'max_length' => 255,
@@ -246,55 +247,88 @@ class Contact extends ContentEntityBase implements ContactInterface {
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    // Gender field for the contact.
-    // ListTextType with a drop down menu widget.
-    // The values shown in the menu are 'male' and 'female'.
-    // In the view the field content is shown as string.
-    // In the form the choices are presented as options list.
-    $fields['gender'] = BaseFieldDefinition::create('list_string')
-      ->setLabel(t('Gender'))
-      ->setDescription(t('The gender of the Contact entity.'))
+    $fields['tell'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Telephone'))
+      ->setDescription(t('User telephone number.'))
       ->setSettings(array(
-        'allowed_values' => array(
-          'female' => 'female',
-          'male' => 'male',
-        ),
+        'default_value' => '',
+        'max_length' => 255,
+        'text_processing' => 0,
       ))
       ->setDisplayOptions('view', array(
         'label' => 'above',
-        'type' => 'list_default',
+        'type' => 'string',
         'weight' => -4,
       ))
       ->setDisplayOptions('form', array(
-        'type' => 'options_select',
+        'type' => 'string_textfield',
         'weight' => -4,
       ))
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    // Owner field of the contact.
-    // Entity reference field, holds the reference to the user object.
-    // The view shows the user name field of the user.
-    // The form presents a auto complete field for the user name.
-    $fields['user_id'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('User Name'))
+
+    $fields['text'] = BaseFieldDefinition::create('text_long')
+      ->setLabel(t('In My Honest Opinion'))
+      ->setDescription(t('Comment of user.'))
+      ->setSettings(array(
+        'default_value' => '',
+        'max_length' => 255,
+        'text_processing' => 0,
+      ))
+      ->setDisplayOptions('view', array(
+        'label' => 'above',
+        'type' => 'string',
+        'weight' => -4,
+      ))
+      ->setDisplayOptions('form', array(
+        'type' => 'string_textfield',
+        'weight' => -4,
+      ))
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+
+
+    $fields['images'] = BaseFieldDefinition::create('image')
+      ->setLabel(t('Add picture to comment'))
       ->setDescription(t('The Name of the associated user.'))
-      ->setSetting('target_type', 'user')
       ->setSetting('handler', 'default')
       ->setDisplayOptions('view', array(
         'label' => 'above',
-        'type' => 'entity_reference_label',
-        'weight' => -3,
+        'type' => 'image',
+        'weight' => -2,
+
       ))
+      ->setSettings([
+        'alt_field_required' => FALSE,
+        'file_extensions' => 'png jpg jpeg',
+        'max_filesize' => '5242880',
+      ])
       ->setDisplayOptions('form', array(
-        'type' => 'entity_reference_autocomplete',
-        'settings' => array(
-          'match_operator' => 'CONTAINS',
-          'size' => 60,
-          'autocomplete_type' => 'tags',
-          'placeholder' => '',
-        ),
-        'weight' => -3,
+        'type' => 'image',
+        'weight' => -2,
+      ))
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['avatar'] = BaseFieldDefinition::create('image')
+      ->setLabel(t('User avatar'))
+      ->setDescription(t('The avatar of the associated user.'))
+      ->setSetting('handler', 'default')
+      ->setDisplayOptions('view', array(
+        'label' => 'above',
+        'type' => 'image',
+        'weight' => -1,
+      ))
+      ->setSettings([
+        'alt_field_required' => FALSE,
+        'file_extensions' => 'png jpg jpeg',
+        'max_filesize' => '2097152',
+      ])
+      ->setDisplayOptions('form', array(
+        'type' => 'image',
+        'weight' => -1,
       ))
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);

@@ -1,0 +1,35 @@
+{# start comment section #}
+{# use css and js. full location in "content_entity_example.libraries.yml"  #}
+{{ attach_library('content_entity_example/scripts_ent') }}
+{# end comment section #}
+<section class="out" >
+  <div class="main-title">{{ data.title }}</div>
+  <div class="errors">
+
+  </div>
+{# start comment section #}
+  {# here we add the form to create ne rewiev #}
+  <div class="adds">{{ add_ent }}</div>
+{# end comment section #}
+
+{# start comment section #}
+  {# system div for print system messages  #}
+  <div id="form-system-messages" class="form-system-messages">
+
+  </div>
+{# end comment section #}
+
+{# start comment section #}
+  {#  here we add singles comment template, that wil be rendered if entity was create. #}
+  <div id="comment">{% include'@content_entity_example/comments.html.twig' %}</div>
+{# end comment section #}
+
+{# start comment section #}
+  {# {{ pager}} - this is page navigation }} #}
+  {{ pager }}
+{# end comment section #}
+
+</section>
+
+
+

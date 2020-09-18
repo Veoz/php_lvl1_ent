@@ -7,16 +7,13 @@ entity.content_entity_example_contact.canonical:
   requirements:
   # Calls the access controller of the entity, $operation 'view'
     _entity_access: 'content_entity_example_contact.view'
-
-entity.content_entity_example_contact.collection:
-  path: '/content_entity_example_contact/list'
+entity.content_entity_example_contact.ent:
+  path: '/ent_contact'
   defaults:
-  # Calls the list controller, defined in the annotation of the contact entity.
-    _entity_list: 'content_entity_example_contact'
-    _title: 'Contact List'
+    _controller: 'Drupal\content_entity_example\Controller\Ent::get_all'
+    _title: 'Say something!'
   requirements:
-  # Checks for permission directly.
-    _permission: 'administer contact entity'
+    _access: 'TRUE'
 
 content_entity_example.contact_add:
   path: '/content_entity_example_contact/add'

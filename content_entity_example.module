@@ -1,0 +1,15 @@
+<?php
+
+function content_entity_example_theme($existing, $type, $theme, $path) {
+  return [
+    'ent_theme' => [
+      'variables' => [
+        'data' => 'data',
+        'add_ent' => 'add_ent',
+        'base_url' => 'base_url',
+        'paginate' => [],
+      ],
+    ],
+  ];
+
+}

@@ -1,0 +1,70 @@
+{# Template to print single comment #}
+{# start comment section #}
+  {#
+  {{ w.avatar }} - The picture that the user has chosen or refault avatar picture
+  {{ w.name }} - name of user
+  {{ w.manage }} - manage button
+  {{ w.created }} - date when was create review
+  {{ w.image }} - picture dfor comment
+  {{ w.text | raw }} - text of review and filter (| raw)
+  {{ w.tell }} - telephone number
+  {{ w.mail }} - e-mail address
+  #}
+{# end comment section #}
+
+{# start comment section #}
+  {# The loop that was render the template #}
+  {% for w in data.lendos %}
+  {# end comment section #}
+    <div class="new-out">
+      <div class="border">
+        <div class="avatar">
+          {# start comment section #}
+          {# if avatar was added then render it. If was not then render default_avatar.png #}
+          {% if w.avatar == 'default_avatar.png' %}
+            <img src="{{ base_url }}/modules/custom/ent/default/default_avatar.png" alt="avatar" id="avatar">
+          {% else %}
+            <img src="{{ w.avatar }}" class="avatar" id="avatar" alt="avatar">
+          {% endif %}
+          {# end comment section #}
+          <div class="titles">
+            {{ w.name }}
+          {# start comment section #}
+          {#  Check admins permission, if admin on the page then render manage button #}
+            {% if is_admin %}
+
+              <div class="edit">
+                {{ w.manage }}
+              </div>
+            {% endif %}
+          {# end comment section #}
+          </div>
+        </div>
+        <div class="date">Created: {{ w.created }}</div>
+
+        <hr>
+        {# start comment section #}
+        {# if image for review was added then render it. If was not then render nothing  #}
+        {% if w.image == 'none' %}
+
+        {% else %}
+          <div class="img">
+            <img src="{{ w.image }}" class="media-com"
+                 alt="Comment media file">
+          </div>
+        {% endif %}
+        {# end comment section #}
+        <div class="content"><p class="ppp"> <b>In My Honest Opinion:</b> {{ w.text | raw }}</p></div>
+
+        <div class="tell">
+          <p><b>Telephone:</b> {{ w.tell }}</p>
+        </div>
+        <div class="mail">
+          <p><b>E-mail:</b> {{ w.mail }}</p>
+        </div>
+
+      </div>
+    </div>
+  {% endfor %}
+
+
